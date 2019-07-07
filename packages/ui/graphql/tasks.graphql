@@ -1,0 +1,7 @@
+query TASKS_QUERY($status: TaskStatus) {
+  tasks(status: $status) {
+    id
+    title
+    status
+  }
+}
