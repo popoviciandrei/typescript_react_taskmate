@@ -1,4 +1,4 @@
-import { colors } from '../styles/contstants';
+import { colors } from '../styles/constants';
 import { FunctionComponent } from 'react';
 
 export const Layout: FunctionComponent = ({ children }) => {
@@ -23,6 +23,9 @@ export const Layout: FunctionComponent = ({ children }) => {
           }
           a {
             text-decoration: none;
+          }
+          ul {
+            padding: 0;
           }
         `}
       </style>

@@ -3,21 +3,44 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: TasksQuery
+// GraphQL mutation operation: CreateTaskMutation
 // ====================================================
 
-export interface TasksQuery_tasks {
+export interface CreateTaskMutation_createTask {
   __typename: "Task";
   id: number | null;
   title: string | null;
   status: TaskStatus | null;
 }
 
-export interface TasksQuery {
-  tasks: (TasksQuery_tasks | null)[] | null;
+export interface CreateTaskMutation {
+  createTask: CreateTaskMutation_createTask | null;
 }
 
-export interface TasksQueryVariables {
+export interface CreateTaskMutationVariables {
+  input: CreateTaskInput;
+}
+
+/* tslint:disable */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: TASKS_QUERY
+// ====================================================
+
+export interface TASKS_QUERY_tasks {
+  __typename: "Task";
+  id: number | null;
+  title: string | null;
+  status: TaskStatus | null;
+}
+
+export interface TASKS_QUERY {
+  tasks: (TASKS_QUERY_tasks | null)[] | null;
+}
+
+export interface TASKS_QUERYVariables {
   status?: TaskStatus | null;
 }
 
@@ -32,6 +55,10 @@ export interface TasksQueryVariables {
 export enum TaskStatus {
   active = "active",
   completed = "completed",
+}
+
+export interface CreateTaskInput {
+  title?: string | null;
 }
 
 //==============================================================
