@@ -1,4 +1,4 @@
-query TASKS_QUERY($status: TaskStatus) {
+query TasksQuery($status: TaskStatus) {
   tasks(status: $status) {
     id
     title
