@@ -1,16 +1,28 @@
 import React from 'react';
 import Link from 'next/link';
 import { colors } from '../styles/constants';
+import { TaskStatus } from '../resources/gql-types';
 
 export interface Props {
   id: number;
   title: string;
+  status: TaskStatus;
   onDeleteTask: (id: number) => void;
+  onTaskStatusChange: (id: number, state: TaskStatus) => void;
 }
 
-export const Task = React.memo<Props>(({ id, title, onDeleteTask }) => {
+export const Task = React.memo<Props>(({ id, title, status, onDeleteTask, onTaskStatusChange }) => {
   return (
     <li>
+      <label>
+        <input type="checkbox" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          const status = e.target.checked
+            ? TaskStatus.completed
+            : TaskStatus.active;
+          onTaskStatusChange(id, status);
+        }} checked={status === TaskStatus.completed} />
+        <span className="checkMark" />
+      </label>
       <div className="title">
         <Link href={{ pathname: '/edit', query: { id } }}>
           <a>{title}</a>
@@ -29,6 +41,40 @@ export const Task = React.memo<Props>(({ id, title, onDeleteTask }) => {
         }
         li:nth-child(odd) {
           background: ${colors.liteBg};
+        }
+        label {
+          cursor: pointer;
+        }
+        input {
+          cursor: pointer;
+          opacity: 0;
+          pointer-events: none;
+          position: absolute;
+        }
+        .checkMark {
+          align-items: center;
+          border: 1px solid ${colors.primary};
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          height: 30px;
+          width: 30px;
+        }
+        .checkMark:before {
+          border: solid ${colors.primary};
+          border-width: 0 3px 3px 0;
+          content: '';
+          display: block;
+          height: 12px;
+          opacity: 0;
+          transform: rotate(45deg);
+          width: 7px;
+        }
+        input:checked + .checkMark:before {
+          opacity: 1;
+        }
+        .checkMark:hover {
+          box-shadow: inset 0 0 0 2px ${colors.shadow};
         }
         .title {
           margin: 0 20px;

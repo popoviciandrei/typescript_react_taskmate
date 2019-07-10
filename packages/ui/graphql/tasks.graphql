@@ -1,5 +1,5 @@
-query TasksQuery($status: TaskStatus) {
-  tasks(status: $status) {
+query TasksQuery($status: TaskStatus){
+  tasks (status:$status) {
     id
     title
     status
